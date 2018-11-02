@@ -36,13 +36,14 @@
 </script>
 
 <style scoped>
-  ul{
+  ul {
     list-style-type: none;
     padding-left: 0px;
     margin-top: 0px;
     text-align: left;
   }
-  li{
+
+  li {
     display: flex;
     min-height: 50px;
     height: 50px;
@@ -53,13 +54,13 @@
     border-radius: 5px;
   }
 
-  .checkBtn{
+  .checkBtn {
     line-height: 45px;
-    color:#62acde;
+    color: #62acde;
     margin-right: 5px;
   }
 
-  .removeBtn{
+  .removeBtn {
     margin-left: auto;
     color: #de4343;
   }
