@@ -22,29 +22,36 @@
         methods: {
             addTodo(todoItem) {
                 // 로컬 스토리지에 추가하는 로직
-                localStorage.setItem(new Date().getTime(), todoItem);
-                this.todoItems.push(todoItem);
+                let timestamp = new Date().getTime();
+
+                localStorage.setItem(timestamp, todoItem);
+                this.todoItems.push({
+                    'key': timestamp,
+                    'value': todoItem
+                });
             },
             clearAll() {
                 localStorage.clear();
                 this.todoItems = [];
             },
             removeTodo(todoItem, index) {
-                localStorage.removeItem(todoItem);
+                //console.log(todoItem);
+                localStorage.removeItem(todoItem.key);
                 this.todoItems.splice(index, 1);
             },
             updateTodo(todoItem, index) {
-                console.log(index);
-                localStorage.setItem(todoItem, todoItem);
+                localStorage.setItem(todoItem.value, todoItem.value);
                 this.todoItems[index] = todoItem;
             }
         },
         created() {
             if (localStorage.length > 0) {
                 for (var i = 0; i < localStorage.length; i++) {
-                    this.todoItems.push(localStorage.key(i))
+                    this.todoItems.push({
+                        'key': localStorage.key(i),
+                        'value': localStorage.getItem(localStorage.key(i))
+                    });
                 }
-                console.log(this.todoItems);
             }
         },
         components: {

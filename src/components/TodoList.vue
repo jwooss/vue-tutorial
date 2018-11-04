@@ -1,9 +1,9 @@
 <template>
   <section>
     <transition-group name="list" tag="ul">
-      <li v-for="(todoItem, index) in propsdata" :key="todoItem" class="shadow">
+      <li v-for="(todoItem, index) in propsdata" :key="todoItem.key" class="shadow">
         <i class="checkBtn fas fa-check" aria-hidden="true"></i>
-        {{todoItem}}
+        {{todoItem.value}}
         <div class="actionBtn">
           <span class="updateBtn" type="button" @click="updateTodo(todoItem, index)">
             <i class="far fa-edit" aria-hidden="true"></i>
@@ -18,7 +18,7 @@
     <modal v-if="showModal" @close="showModal = false">
       <h3 slot="header">수정하기</h3>
       <span slot="body">
-        <input type="text" v-model="editTodoItem">
+        <input type="text" v-model="editTodoItem.value">
       </span>
       <span slot="footer" @click="showModal = false">
          닫기
@@ -53,7 +53,6 @@
         },
         watch: {
             editTodoItem: function (data) {
-                console.log(data);
                 this.$emit('updateTodo', data, this.index);
             }
         },
